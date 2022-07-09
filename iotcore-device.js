@@ -55,7 +55,7 @@ module.exports = function(RED) {
         this.brokerPort = config.brokerPort;
         this.projectId = config.projectId;
         this.registryId = config.registryId;
-        this.deviceId = config.deviceId;
+        this.deviceId = (config.deviceId != null ||  config.deviceId != "") ? config.deviceId : "sn-" + process.env.BALENA_DEVICE_UUID;
         this.region = config.region;
         this.privateKeyFile = config.privateKeyFile;
         this.algorithm = config.algorithm;
