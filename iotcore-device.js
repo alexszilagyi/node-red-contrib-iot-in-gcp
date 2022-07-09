@@ -2,10 +2,10 @@ module.exports = function(RED) {
     "use strict";
 
     // [START CONST DEFINITON]
-
+    require('dotenv').config();
     const mqtt = require("mqtt");
     const jwt = require('jsonwebtoken');
-    const fs = require("fs"); 
+    const fs = require("fs");
 
     const STATUS_CONNECTED = {
         fill:  "green",
