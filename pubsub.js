@@ -46,9 +46,16 @@ module.exports = function(RED) {
         let subscription = null;
 
         let credentials = null;
-        if (config.account) {
-            credentials = GetCredentials(config.account);
+        if (config != null) {
+            if (config.account) {
+                credentials = GetCredentials(config.account);
+            } else {
+                credentials = JSON.parse(process.env.GOOGLE_IOT_SERVICE_ACCOUNT_TOKEN);
+            }
+        } else {
+            credentials = JSON.parse(process.env.GOOGLE_IOT_SERVICE_ACCOUNT_TOKEN);
         }
+
         let projectId = config.projectId;
         if (!projectId || projectId.trim().length == 0) {
             projectId = null;
@@ -146,9 +153,16 @@ module.exports = function(RED) {
         const node = this;
 
         let credentials = null;
-        if (config.account) {
-            credentials = GetCredentials(config.account);
+        if (config != null) {
+            if (config.account) {
+                credentials = GetCredentials(config.account);
+            } else {
+                credentials = JSON.parse(process.env.GOOGLE_IOT_SERVICE_ACCOUNT_TOKEN);
+            }
+        } else {
+            credentials = JSON.parse(process.env.GOOGLE_IOT_SERVICE_ACCOUNT_TOKEN);
         }
+
         const keyFilename = config.keyFilename;
 
         if (!config.topic) {
