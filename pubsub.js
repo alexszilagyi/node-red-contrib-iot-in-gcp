@@ -1,6 +1,8 @@
 module.exports = function(RED) {
     "use strict";
 
+    require('dotenv').config();
+
     const STATUS_CONNECTED = {
         fill:  "green",
         shape: "dot",
@@ -31,7 +33,12 @@ module.exports = function(RED) {
      * Extract JSON service account key from "google-cloud-credentials" config node.
      */
     function GetCredentials(node) {
-        return JSON.parse(RED.nodes.getCredentials(node).account);
+        let _configNode = JSON.parse(RED.nodes.getCredentials(node));
+        if (_configNode != null) {
+            return JSON.parse(RED.nodes.getCredentials(node).account);
+        } else {
+            return JSON.parse(process.env.GOOGLE_IOT_SERVICE_ACCOUNT_TOKEN);
+        }
     }
 
     function PubSubReceive(config) {
