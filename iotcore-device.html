@@ -191,6 +191,7 @@
 </script>
 
 <script type="text/javascript">
+    require('dotenv').config();
     RED.nodes.registerType('google-cloud-iotcore broker',{
         category: 'config',
         defaults: {
@@ -202,7 +203,7 @@
             projectId: {value:"",required:true},
             region: {value:"",required:true},
             registryId: {value:"",required:true},
-            deviceId: {value:"",required:true},
+            deviceId: {value:"sn-" + process.env.BALENA_DEVICE_UUID,required:true},
             algorithm: {value:"RS256",required:true},
             privateKeyFile: {value:"",required:true},
             keepAlive: {value:"60",required:true},

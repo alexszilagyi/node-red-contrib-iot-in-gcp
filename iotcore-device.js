@@ -2,7 +2,6 @@ module.exports = function(RED) {
     "use strict";
 
     // [START CONST DEFINITON]
-    require('dotenv').config();
     const mqtt = require("mqtt");
     const jwt = require('jsonwebtoken');
     const fs = require("fs");
@@ -47,7 +46,7 @@ module.exports = function(RED) {
 
 
     // [START MQTT BROKER]
-    function MqttBrokerNode (config) {      
+    function MqttBrokerNode (config) {
         RED.nodes.createNode(this, config);
         //const node = this;
 
@@ -55,7 +54,7 @@ module.exports = function(RED) {
         this.brokerPort = config.brokerPort;
         this.projectId = config.projectId;
         this.registryId = config.registryId;
-        this.deviceId = (config.deviceId != null ||  config.deviceId != "") ? config.deviceId : "sn-" + process.env.BALENA_DEVICE_UUID;
+        this.deviceId = config.deviceId;
         this.region = config.region;
         this.privateKeyFile = config.privateKeyFile;
         this.algorithm = config.algorithm;
